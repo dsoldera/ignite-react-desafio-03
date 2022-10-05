@@ -36,7 +36,7 @@ const Home = (): JSX.Element => {
 
       const formattedProducts = data.map<ProductFormatted>(product => ({
         ...product, priceFormatted: formatPrice(product.price)
-      }))
+      }));
 
       setProducts(formattedProducts)
     }

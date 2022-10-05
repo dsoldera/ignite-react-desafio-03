@@ -19,9 +19,11 @@ interface Product {
 
 const Cart = (): JSX.Element => {
   const { cart, removeProduct, updateProductAmount } = useCart();
-
+  
   const cartFormatted = cart.map(product => ({
-    ...product
+    ...product,
+    priceFormatted: formatPrice(product.price),
+    priceTotal: formatPrice(product.amount * product.price)
   }))
   
   const total =
@@ -60,13 +62,13 @@ const Cart = (): JSX.Element => {
         <tbody>
           {cartFormatted.map(product => (
           <tr key={product.id} data-testid="product">
+            {product.amount}
             <td>
             <img src={product.image} alt={product.title} />
             </td>
             <td>
               <strong>{product.title}</strong>
-              <span>R$ 179,90</span>
-              {/* <span>{product.priceFormatted}</span> */}
+              <span>{product.priceFormatted}</span>
             </td>
             <td>
               <div>
